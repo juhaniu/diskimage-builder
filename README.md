@@ -1,6 +1,10 @@
 # diskimage-builder
 
-Prep:
+##How to set-up the diskimage-builder and change to default disk layout to LVM.
+Tested with CentOS7.
+
+**Prep:**
+
 #yum install epel-release 
 
 #yum install parted qemu-img kpartx git python python-pip wget policycoreutils-python libguestfs-tools 
