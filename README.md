@@ -1,6 +1,6 @@
 # diskimage-builder
 
-##How to set-up the diskimage-builder and change to default disk layout to LVM.
+## How to set-up the diskimage-builder and change to default disk layout to LVM.
 Tested with CentOS7.
 
 **Prep:**
