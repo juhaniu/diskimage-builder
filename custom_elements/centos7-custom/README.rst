@@ -2,4 +2,6 @@
 centos7-custom
 ================
  
-Customize centos7
+Customize CentOS7
+
+Work in progress! 
