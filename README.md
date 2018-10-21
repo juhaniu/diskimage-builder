@@ -51,8 +51,10 @@ Change the qcow2 to VMDK
 
 Import to OpenStack and launch
 
-
-
+If you need to review, then you can mount it:
+```
+guestmount -a /tmp/centos7.vmdk -i --ro /mnt
+```
 
 ## Built With
 
