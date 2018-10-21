@@ -1,0 +1,35 @@
+#!/bin/bash
+
+DATE='date +'%Y-%m-%d''
+# Permit password auth via SSH
+echo 'ssh_pwauth: true'     	>> /etc/cloud/cloud.cfg.d/50_remote_access.cfg
+# Generate new keys in first boot
+echo 'ssh_deletekeys: no' 	>> /etc/cloud/cloud.cfg.d/50_remote_access.cfg
+# Don’t disable root access via SSH
+echo 'disable_root: false'  	>> /etc/cloud/cloud.cfg.d/50_remote_access.cfg
+# Don’t create "ubuntu" user
+echo 'users: [cloud-user]'            	>> /etc/cloud/cloud.cfg.d/50_remote_access.cfg
+# Change default timezone to MSK
+echo 'timezone: Europe/Helsinki'  >> /etc/cloud/cloud.cfg.d/50_timezone.cfg
+# Change PermitRootLogin value to "yes"
+sed -i 's/PermitRootLogin .*/PermitRootLogin yes/g' /etc/ssh/sshd_config
+# Set root password to empty
+passwd -d root
+
+
+# Allow centos user to login
+sed -i 's/name: centos/name: cloud-user/g' /etc/cloud/cloud.cfg
+
+# Allow centos user to login
+sed -i 's/lock_passwd: true/lock_passwd: false/g' /etc/cloud/cloud.cfg
+# Add system build date
+DATE=$(date '+%Y-%m-%d')
+echo "This system was built on" $DATE >> /etc/motd
+
+#blacklist floppy
+echo 'blacklist floppy' > /etc/modprobe.d/floppy.conf
+
+#fix slow cloud-init, maybe?
+touch /etc/cloud/cloud-init.disabled
+
+
