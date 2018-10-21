@@ -13,7 +13,7 @@ echo 'users: [cloud-user]'            	>> /etc/cloud/cloud.cfg.d/50_remote_acces
 echo 'timezone: Europe/Helsinki'  >> /etc/cloud/cloud.cfg.d/50_timezone.cfg
 # Change PermitRootLogin value to "yes"
 sed -i 's/PermitRootLogin .*/PermitRootLogin yes/g' /etc/ssh/sshd_config
-# Set root password to empty
+# Set root password to empty. Note to change that!!
 passwd -d root
 
 
