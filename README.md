@@ -26,12 +26,13 @@ Download image:
 wget https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud.qcow2
 ```
 
-Add to .bash_profile
+Add to .bashrc
 
 ```
-PATH=$PATH:$HOME/bin:~/.local/bin
-source /root/.bash_profile
+PATH=$PATH:$HOME/.local/bin:$HOME/bin
+export PATH
 ```
+
 
 
 ## Usage
@@ -44,7 +45,7 @@ disk-image-create -o centos7 --no-tmpfs --image-size 5 vm centos7 centos7-custom
 
 Change the qcow2 to VMDK
 ```
-qemu-img convert -f qcow2 -O vmdk -o adapter_type=lsilogic,subformat=streamOptimized,compat6 centos7.qcow2 /tmp/centos7.vmdk
+qemu-img convert -p -f qcow2 -O vmdk -o adapter_type=lsilogic,subformat=streamOptimized,compat6 centos7.qcow2 /tmp/centos7.vmdk
 ```
 
 Import to OpenStack and launch
